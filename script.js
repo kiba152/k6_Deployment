@@ -94,6 +94,10 @@ export const options = {
   
 }
 
+export default function(){
+  createTaskPage_customerLocation()
+}
+
 export async function loginPage() {
 
 
