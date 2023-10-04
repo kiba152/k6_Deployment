@@ -5,17 +5,6 @@ import exec from 'k6/execution'
 // require('dotenv').config()
 export const options = {
   scenarios:{
-    // contacts: {
-    //   exec: 'loginPage',
-    //   executor: 'constant-vus',
-    //   vus: 5,
-    //   duration: '10m',
-    //   options: {
-    //     browser: {
-    //       type: 'chromium', // chromium is the only supported browser type so as long as
-    //                         // the option is set, Chromium/Google Chrome will be used
-    //     },
-    // },
     default:{
       exec: 'createTaskPage_customerLocation',
       executor: 'per-vu-iterations',
@@ -28,79 +17,12 @@ export const options = {
                             // the option is set, Chromium/Google Chrome will be used
         },},
     },
-    
-    // contacts: {
-    //   exec: 'loginPage',
-    //   executor: 'per-vu-iterations',
-    //   startVUs: 1,
-    //   stages: [
-    //     { duration: '1m', target: 5 },
-    //     { duration: '4m', target: 15 },
-    //     { duration: '8m', target: 25 },
-    //   ],
-    //   gracefulRampDown: '30s',
-    // },
-    // protocol:{
-    //   exec: 'loginPage',
-    //   executor: 'shared-iterations',
-    //   vus: 50, 
-    //   iterations: 100,
-    //   maxDuration: '20m',
-    //   options: {
-    //     browser: {
-    //       type: 'chromium', // chromium is the only supported browser type so as long as
-    //                         // the option is set, Chromium/Google Chrome will be used
-    //     },},
-    // }
-    // rampingArrivalRate: {
-    //   exec: 'loginPage',
-    //   executor: 'ramping-arrival-rate',
-
-    //   // Start iterations per `timeUnit`
-    //   startRate: 1,
-
-    //   // Start `startRate` iterations per minute
-    //   timeUnit: '1m',
-
-    //   // Pre-allocate necessary VUs.
-    //   preAllocatedVUs: 50,
-
-    //   stages: [
-    //     // Start 300 iterations per `timeUnit` for the first minute.
-    //     { target: 20, duration: '5m' },
-
-    //     // Linearly ramp-up to starting 600 iterations per `timeUnit` over the following two minutes.
-    //     { target: 40, duration: '10m' },
-
-    //     // Continue starting 600 iterations per `timeUnit` for the following four minutes.
-    //     { target: 60, duration: '20m' },
-
-    //     // Linearly ramp-down to starting 60 iterations per `timeUnit` over the last two minutes.
-    //     { target: 60, duration: '10m' },
-    //   ],
-    // },
-    // constantArrivalRate: {
-    //   exec: 'loginPage',
-    //   executor: 'constant-arrival-rate',
-
-    //   // How long the test lasts
-    //   duration: '5m',
-
-    //   // How many iterations per timeUnit
-    //   rate: 1,
-
-    //   // Start `rate` iterations per second
-    //   timeUnit: '2s',
-
-    //   // Pre-allocate VUs
-    //   preAllocatedVUs: 10,
-    // },
   },
   
 }
 
-export default function(){
-  createTaskPage_customerLocation()
+export default function main(){
+  createTaskProtocol()
 }
 
 export async function loginPage() {
@@ -559,7 +481,7 @@ export function createTaskProtocol(){
   const url = 'https://api-dev.elogii.com/tasks'
   const payload = JSON.stringify({
       type: 1,
-      date: 20230806,
+      date: 20231004,
       timeWindows: [
           {
               start: 420,
