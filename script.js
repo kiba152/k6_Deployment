@@ -14,7 +14,7 @@ export const options = {
     login:{
       exec: 'createTaskPage_customerLocation',
       executor: 'per-vu-iterations',
-      vus: 30,
+      vus: 5,
       iterations: 1,
       maxDuration: '30m',
       options: {
