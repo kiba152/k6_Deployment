@@ -10,8 +10,13 @@ export const options = {
     //   executor: 'constant-vus',
     //   vus: 5,
     //   duration: '10m',
+    //   options: {
+    //     browser: {
+    //       type: 'chromium', // chromium is the only supported browser type so as long as
+    //                         // the option is set, Chromium/Google Chrome will be used
+    //     },
     // },
-    login:{
+    default:{
       exec: 'createTaskPage_customerLocation',
       executor: 'per-vu-iterations',
       vus: 5,
