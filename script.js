@@ -14,7 +14,7 @@ export const options = {
     login:{
       exec: 'createTaskPage_customerLocation',
       executor: 'per-vu-iterations',
-      vus: 15,
+      vus: 30,
       iterations: 1,
       maxDuration: '30m',
       options: {
@@ -389,7 +389,7 @@ export async function createTaskPage_customerLocation() {
     //   token: "res"
     // }
   page.evaluate(() => {
-  let tokenValue = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzU2NGY4NWM1NTdjMTAwMTI2NjFlNDAiLCJ0eXBlIjoyMCwibGV2ZWwiOjIwLCJlbWFpbCI6Imthcml1a2kubXVoaW5kaUBlbG9naWkuY29tIiwib3JnYW5pemF0aW9uIjoiNjM1NjRmODVjNTU3YzEwMDEyNjYxZTNlIiwicGF0aCI6IjYzNTY0Zjg1YzU1N2MxMDAxMjY2MWUzZSIsInRlYW1zIjpbXSwic2x1ZyI6Imthcml1a2lxYSIsImlhdCI6MTY5NTgyOTM5NywiZXhwIjoxNjk2NDM0MTk3fQ.6reya42PedXqwMjxnkjYRWB6F5L0MxTzLTJ9EjOFEnQ"
+  let tokenValue = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzU2NGY4NWM1NTdjMTAwMTI2NjFlNDAiLCJ0eXBlIjoyMCwibGV2ZWwiOjIwLCJlbWFpbCI6Imthcml1a2kubXVoaW5kaUBlbG9naWkuY29tIiwib3JnYW5pemF0aW9uIjoiNjM1NjRmODVjNTU3YzEwMDEyNjYxZTNlIiwicGF0aCI6IjYzNTY0Zjg1YzU1N2MxMDAxMjY2MWUzZSIsInRlYW1zIjpbXSwic2x1ZyI6Imthcml1a2lxYSIsImlhdCI6MTY5NjQxMzgzMywiZXhwIjoxNjk3MDE4NjMzfQ._QNNTbBt6zfOfPLsc3Kcd6pfaOhiOd6QAuIjJr3qfyo"
 
  localStorage.setItem("elogii.auth",`{"isAuthenticated":true,"token":"${tokenValue}","user":{"_id":"63564f85c557c10012661e40","type":20,"level":20,"flags":{"onboarding":{"overview":false,"depot":false,"dimension":false,"skills":false,"capabilities":false,"supportContact":false,"issueOptions":false,"optimisationOptions":false,"vehicleType":false,"vehicle":false,"driver":false,"import":false,"planning":false,"completed":false},"isPasswordReset":false,"isHidden":false,"firstLogin":1666601070},"email":"kariuki.muhindi@elogii.com","firstName":"Kariuki","lastName":"Muhindi","path":"63564f85c557c10012661e3e","organization":"63564f85c557c10012661e3e","role":"admin","permissions":{"analytics":{"view":true,"read":true},"billing":{"read":true},"communications":{"voice":true},"customers":{"create":true,"delete":true,"read":true,"update":true},"tasks":{"create":true,"delete":true,"read":true,"update":true},"taskTemplates":{"create":true,"delete":true,"read":true,"view":true,"update":true},"routePlans":{"create":true,"delete":true,"read":true,"view":true,"update":true},"demo":{"clear":true,"create":true},"drivers":{"create":true,"delete":true,"read":true,"update":true},"notifications":{"manage":true},"optimization":{"runForRoutes":true,"runForDate":true},"organizations":{"delete":true,"read":true,"update":true,"view":{"operation":true,"configuration":true}},"routes":true,"users":{"create":true,"delete":true,"read":true,"view":true,"update":true},"teams":{"create":true,"delete":true,"read":true,"view":true,"update":true,"entities":true},"vehicleTypes":{"create":true,"delete":true,"read":true,"update":true},"vehicles":{"create":true,"delete":true,"read":true,"update":true},"zones":{"create":true,"delete":true,"read":true,"update":true},"hooks":{"create":true,"delete":true,"read":true,"update":true},"notes":{"create":true,"delete":true,"read":true,"update":true},"jobs":true,"depots":true,"locations":true},"uid":"U-CN76NCCB","teams":[],"createdAt":"2022-10-24T08:40:37.174Z","updatedAt":"2023-05-10T11:53:01.059Z","__v":0,"settings":{"locale":"en"}},"organizationSlug":"kariukiqa"}`)
   });
