@@ -21,8 +21,74 @@ export const options = {
   
 }
 
-export default function main(){
-  createTaskPage_customerLocation()
+export  default async function main(){
+  const context = browser.newContext({
+    screen: { width: 1440, height: 1024 },
+    viewport: { width: 1320, height: 1024 },
+
+    // deviceScaleFactor: 5,
+    
+  });
+  const page = context.newPage({
+    headless: false,
+  });
+    
+  try {
+    
+  
+    // Authenticate
+    await page.goto('https://dashboard-dev.elogii.com/#/login');
+    // let tokenValue1 = {
+    //   token: "res"
+    // }
+  page.evaluate(() => {
+  let tokenValue = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzU2NGY4NWM1NTdjMTAwMTI2NjFlNDAiLCJ0eXBlIjoyMCwibGV2ZWwiOjIwLCJlbWFpbCI6Imthcml1a2kubXVoaW5kaUBlbG9naWkuY29tIiwib3JnYW5pemF0aW9uIjoiNjM1NjRmODVjNTU3YzEwMDEyNjYxZTNlIiwicGF0aCI6IjYzNTY0Zjg1YzU1N2MxMDAxMjY2MWUzZSIsInRlYW1zIjpbXSwic2x1ZyI6Imthcml1a2lxYSIsImlhdCI6MTY5NjU5OTIxMiwiZXhwIjoxNjk3MjA0MDEyfQ.2U-MdbFF6mpFqrfTPWeN9Ffn6SsyI3M0Iu0hkNmbbjc"
+
+ localStorage.setItem("elogii.auth",`{"isAuthenticated":true,"token":"${tokenValue}","user":{"_id":"63564f85c557c10012661e40","type":20,"level":20,"flags":{"onboarding":{"overview":false,"depot":false,"dimension":false,"skills":false,"capabilities":false,"supportContact":false,"issueOptions":false,"optimisationOptions":false,"vehicleType":false,"vehicle":false,"driver":false,"import":false,"planning":false,"completed":false},"isPasswordReset":false,"isHidden":false,"firstLogin":1666601070},"email":"kariuki.muhindi@elogii.com","firstName":"Kariuki","lastName":"Muhindi","path":"63564f85c557c10012661e3e","organization":"63564f85c557c10012661e3e","role":"admin","permissions":{"analytics":{"view":true,"read":true},"billing":{"read":true},"communications":{"voice":true},"customers":{"create":true,"delete":true,"read":true,"update":true},"tasks":{"create":true,"delete":true,"read":true,"update":true},"taskTemplates":{"create":true,"delete":true,"read":true,"view":true,"update":true},"routePlans":{"create":true,"delete":true,"read":true,"view":true,"update":true},"demo":{"clear":true,"create":true},"drivers":{"create":true,"delete":true,"read":true,"update":true},"notifications":{"manage":true},"optimization":{"runForRoutes":true,"runForDate":true},"organizations":{"delete":true,"read":true,"update":true,"view":{"operation":true,"configuration":true}},"routes":true,"users":{"create":true,"delete":true,"read":true,"view":true,"update":true},"teams":{"create":true,"delete":true,"read":true,"view":true,"update":true,"entities":true},"vehicleTypes":{"create":true,"delete":true,"read":true,"update":true},"vehicles":{"create":true,"delete":true,"read":true,"update":true},"zones":{"create":true,"delete":true,"read":true,"update":true},"hooks":{"create":true,"delete":true,"read":true,"update":true},"notes":{"create":true,"delete":true,"read":true,"update":true},"jobs":true,"depots":true,"locations":true},"uid":"U-CN76NCCB","teams":[],"createdAt":"2022-10-24T08:40:37.174Z","updatedAt":"2023-05-10T11:53:01.059Z","__v":0,"settings":{"locale":"en"}},"organizationSlug":"kariukiqa"}`)
+  });
+
+  page.reload();
+
+  await Promise.all([
+    page.waitForNavigation(),
+    page.waitForSelector("//div[@class='splitter-cont left-cont']//div[@class='task-filters']//button[1]",
+    {
+      timeout: "120000"
+    }),
+    // page.waitForSelector("//div[contains(@class,'elogii-button elogii-button-new elogii-button-normal filter-new-button add-button')]//div[contains(@class,'elogii-button-content')]")
+  ]);
+
+    // Click tasks nav button after redirect to operations page
+    const tasksNavButton = page.locator('a[href="#/tasks"]')
+    await Promise.all([page.waitForNavigation(),tasksNavButton.click()]);
+    // Click add new tasks button
+    const addTask = page.waitForSelector("//div[contains(@class,'elogii-button elogii-button-new elogii-button-normal filter-new-button add-button')]//div[contains(@class,'elogii-button-content')]")
+    //Click customer location button
+    const customerLocation = page.locator("//div[@id='location.type']//span[contains(text(),'Customer location')]")
+    await Promise.all([
+      page.waitForSelector("//div[contains(@class,'elogii-button elogii-button-new elogii-button-normal filter-new-button add-button')]//div[contains(@class,'elogii-button-content')]"),
+       addTask.click(),
+       customerLocation.click(),
+      ]);
+
+    
+    // //Click save button
+    const saveButton = page.locator('body > div:nth-child(1) > section:nth-child(1) > section:nth-child(2) > main:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1)')
+    await Promise.all([
+       saveButton.click(),
+      ]);
+      page.waitForSelector("div[class='ant-message-custom-content ant-message-success'] span")
+    check(page, {
+      url: page.url() == 'https://dashboard-dev.elogii.com/#/tasks/new',
+      addTask: page.locator("div[class='details-title-section-right'] h1").innerText() == "New task",
+      toastMessage: page.locator("div[class='ant-message-custom-content ant-message-success'] span").innerText()  == "Created Successfully"
+
+    });
+ 
+  } finally {
+    page.close();
+    // browser.close();
+  }
   // 1
 }
 
